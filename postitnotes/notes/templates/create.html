@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+        <div class="row" style="margin: 5%;
+        background: rgb(238,174,202);
+        background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+        padding: 50px; border-radius: 50px;box-shadow: 10px 10px 5px black;
+">
+            <div class="col-md">
+                <h3>Create Note</h3>
+        <form method="POST" >
+            {% csrf_token %}
+            {{ form|crispy }}
+
+            <button class="btn btn-primary" style="margin-top: 2%;" type="submit">Submit</button>  
+        </form>
+    </div>
+    <div class="col-md">
+        <img height="500" width="88%" src="../static/images/main.png" alt="">
+    </div>
+    </div>
+        {% endblock content %}
+
+

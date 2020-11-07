@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+
+<div class="col-md">
+        <h2 style="text-shadow: 2px 2px 5px white;color:white;margin:20px;">Active Notes</h2>
+        
+        {% for note in active_notes %}
+
+        <div class="card" style="width: 18rem;box-shadow: 4px 4px 5px azure;margin:7px;
+        background-color: #f39f86;
+        background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%);">
+            <div class="card-body">
+                
+
+                <div class="row">
+                    <div class="col">
+                        <h5 class="card-title">{{note.title}}<a href="/done/{{note.id}}"><span  class="badge badge-success">Mark as Done</span>
+                        </a></h5>
+                    </div>
+                    
+                </div>
+              <p class="card-text">{{note.description}}</p>
+              <a href="/delete/{{note.id}}" class="card-link">Delete</a>
+              <a href="/edit/{{note.id}}" class="card-link">Edit</a>
+              <div>
+                {% if note.favourite == False %}
+                <div class="col" style="text-align: right;" >
+                    <a href="/favourite/{{note.id}}">
+                    <img  src="../static/images/star.png" style="filter: grayscale(100%);" height="50" width="50" alt="">
+                </a>
+                </div>
+                {% elif note.favourite == True %}
+                <div class="col" style="margin-left: 150px;">
+                    <a href="/remove/favourite/{{note.id}}">
+                    <img src="../static/images/star.png" height="50" width="50" alt="">
+                </a>
+                </div>
+                {% endif %}
+              </div>
+              <footer class="blockquote-footer">Author : <cite title="Source Title">{{note.author}}</cite></footer>
+
+              <footer class="blockquote-footer">Created On : <cite title="Source Title">{{note.date}}</cite></footer>
+            </div>
+          </div>
+            
+        {% endfor %}
+          </div>
+          <div class="col-md">
+        <h2 style="text-shadow: 2px 2px 5px white;color:white;margin:20px;">Done Notes</h2>
+
+        {% for note in done_notes %}
+
+        <div class="card" style="width: 18rem;box-shadow: 4px 4px 5px azure;margin:7px;
+        background-color: #f39f86;
+        background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%);">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <h5 class="card-title">{{note.title}}</h5>
+                    </div>
+                    
+                </div>
+              <p class="card-text">{{note.description}}</p>
+              <a href="/delete/{{note.id}}" class="card-link">Delete</a>
+              <a href="/edit/{{note.id}}" class="card-link">Edit</a>
+              <div>
+                {% if note.favourite == False %}
+                <div class="col" style="text-align: right;" >
+                    <a href="/favourite/{{note.id}}">
+                    <img  src="../static/images/star.png" style="filter: grayscale(100%);" height="50" width="50" alt="">
+                </a>
+                </div>
+                {% elif note.favourite == True %}
+                <div class="col" style="margin-left: 150px;">
+                    <a href="/remove/favourite/{{note.id}}">
+                    <img src="../static/images/star.png" height="50" width="50" alt="">
+                </a>
+                </div>
+                {% endif %}
+              </div>
+              <footer class="blockquote-footer">Author : <cite title="Source Title">{{note.author}}</cite></footer>
+
+              <footer class="blockquote-footer">Created On : <cite title="Source Title">{{note.date}}</cite></footer>
+
+            </div>
+          </div>
+
+        {% endfor %}
+    </div>
+
+
+    <div class="col-md">
+        <h2 style="text-shadow: 2px 2px 5px white;color:white;margin:20px;">Favourite Notes</h2>
+        
+        {% for note in favourite_notes %}
+        <div class="card" style="width: 18rem;box-shadow: 4px 4px 5px azure;margin:7px;
+        background-color: #f39f86;
+        background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%);">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <h5 class="card-title">{{note.title}}</h5>
+                    </div>
+                    
+                </div>
+
+              {% if note.completed == False %}
+
+              <a style="color: green;text-decoration: underline;" 
+              href="/done/{{note.id}}">Mark as Done</a>
+              {%endif%}
+              <p class="card-text">{{note.description}}</p>
+              <a href="/delete/{{note.id}}" class="card-link">Delete</a>
+              <a href="/edit/{{note.id}}" class="card-link">Edit</a>
+              <div>
+                {% if note.favourite == False %}
+                <div class="col" style="text-align: right;" >
+                    <a href="/favourite/{{note.id}}">
+                    <img  src="../static/images/star.png" style="filter: grayscale(100%);" height="50" width="50" alt="">
+                </a>
+                </div>
+                {% elif note.favourite == True %}
+                <div class="col" style="margin-left: 150px;">
+                    <a href="/remove/favourite/{{note.id}}">
+                    <img src="../static/images/star.png" height="50" width="50" alt="">
+                </a>
+                </div>
+                {% endif %}
+              </div>
+              <footer class="blockquote-footer">Author : <cite title="Source Title">{{note.author}}</cite></footer>
+
+              <footer class="blockquote-footer">Created On : <cite title="Source Title">{{note.date}}</cite></footer>
+
+            </div>
+          </div>
+            
+        {% endfor %}
+          </div>
+
+
+    </div>
+        {% endblock content %}
